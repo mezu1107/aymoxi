@@ -23,6 +23,9 @@ import { type ComponentType } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { useLiveList } from "@/lib/use-live-list";
 import { TrustBar } from "@/components/site/TrustBar";
+import { LiveActivity, TrustGrabber } from "@/components/site/LiveActivity";
+import { TeamStrip } from "@/components/site/TeamStrip";
+import { PortfolioPreview } from "@/components/site/PortfolioPreview";
 
 const PHONE = "+1 720 794 1888";
 
@@ -497,10 +500,14 @@ export function BentoHome() {
       <ServicesBento services={services} />
       <ClientsStrip clients={clients} />
       <WhyBento stats={stats} />
+      <PortfolioPreview />
       <ProcessCards steps={steps} />
+      <LiveActivity />
+      <TeamStrip />
       <OfferBanner />
       <VisionBlock />
       <TestimonialsCards items={testimonials} />
+      <TrustGrabber />
       <FinalCTA />
     </>
   );
