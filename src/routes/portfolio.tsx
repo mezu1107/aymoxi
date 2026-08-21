@@ -63,7 +63,7 @@ function PortfolioPage() {
                       {p.image_url ? (
                         <img src={p.image_url} alt={p.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" loading="lazy" />
                       ) : (
-                        <div className="grid h-full w-full place-items-center text-espresso/40">No image</div>
+                        <div className="grid h-full w-full place-items-center bg-gradient-to-br from-[#2e6b16] to-[#0a2205] px-6 text-center"><span className="font-display text-xl font-black text-copper">{p.title}</span></div>
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-espresso/70 via-transparent opacity-0 transition group-hover:opacity-100" />
                       <div className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-cream/90 text-espresso opacity-0 transition group-hover:opacity-100">
