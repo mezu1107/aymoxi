@@ -1,0 +1,281 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 14px);
+  --radius-3xl: calc(var(--radius) + 22px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Legacy token names, remapped to AYMOXI brand palette so existing
+     classes (bg-cream, text-espresso, bg-copper, text-cocoa, bg-sand)
+     inherit the new theme site-wide. */
+  --color-cream: var(--cream);
+  --color-sand: var(--sand);
+  --color-espresso: var(--espresso);
+  --color-copper: var(--copper);
+  --color-cocoa: var(--cocoa);
+
+  --shadow-luxury: 0 30px 60px -20px rgba(30, 80, 15, 0.18);
+  --shadow-soft: 0 10px 30px -12px rgba(30, 80, 15, 0.12);
+}
+
+:root {
+  --radius: 1rem;
+
+  /* AYMOXI brand palette
+     cream   = white background
+     sand    = subtle light background
+     espresso= dark teal (headings / dark text on light)
+     cocoa   = primary teal (primary buttons / dark surfaces)
+     copper  = lime accent (highlights, small accents) */
+  --cream: #ffffff;
+  --sand: #f2f8ec;
+  --espresso: #123409;
+  --cocoa: #2e6b16;
+  --copper: #8cc63f;
+
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #2e6b16;
+  --primary-foreground: #ffffff;
+  --secondary: #f7fbf2;
+  --secondary-foreground: #123409;
+  --muted: #f7fbf2;
+  --muted-foreground: #5b6470;
+  --accent: #8cc63f;
+  --accent-foreground: #123409;
+  --destructive: #d64545;
+  --destructive-foreground: #ffffff;
+  --border: #e6ece0;
+  --input: #e6ece0;
+  --ring: #2e6b16;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+@utility reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@utility reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@utility reveal-zoom {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+@layer base {
+  .is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--copper), var(--cocoa));
+    z-index: 100;
+    transition: width 0.1s linear;
+  }
+  @keyframes softPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(185, 229, 46, 0.55); }
+    50% { box-shadow: 0 0 0 14px rgba(185, 229, 46, 0); }
+  }
+  .pulse-ring { animation: softPulse 2s infinite; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-track { animation: marquee 30s linear infinite; }
+  @keyframes slideInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .slide-in { animation: slideInUp 0.5s ease-out; }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+  @keyframes serviceOrbit {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes serviceOrbitReverse {
+    to { transform: rotate(-360deg); }
+  }
+  @keyframes serviceFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-8px) scale(1.04); }
+  }
+  .service-orbit {
+    animation: serviceOrbit 14s linear infinite;
+    border-top-color: var(--copper);
+  }
+  .service-orbit-reverse {
+    animation: serviceOrbitReverse 10s linear infinite;
+    border-bottom-color: var(--copper);
+  }
+  .service-icon-float { animation: serviceFloat 3s ease-in-out infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-orbit, .service-orbit-reverse, .service-icon-float { animation: none; }
+  }
+
+  /* Premium glass surface — used by nav + hero cards */
+  .glass {
+    background: color-mix(in oklab, #ffffff 78%, transparent);
+    backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid color-mix(in oklab, #2e6b16 8%, transparent);
+  }
+  .glass-dark {
+    background: color-mix(in oklab, #123409 82%, transparent);
+    backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid color-mix(in oklab, #8cc63f 20%, transparent);
+  }
+
+  /* ---------- Real 3D card system ---------- */
+  .scene-3d { perspective: 1100px; perspective-origin: 50% 30%; }
+
+  .card-3d {
+    position: relative;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition:
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow:
+      0 1px 0 0 color-mix(in oklab, #ffffff 65%, transparent) inset,
+      0 -1px 0 0 color-mix(in oklab, #06363a 8%, transparent) inset,
+      0 10px 18px -12px color-mix(in oklab, #06363a 45%, transparent),
+      0 28px 50px -28px color-mix(in oklab, #06363a 40%, transparent);
+  }
+  /* light sweep that reads as a real surface */
+  .card-3d::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(
+      145deg,
+      color-mix(in oklab, #ffffff 34%, transparent) 0%,
+      transparent 38%,
+      transparent 62%,
+      color-mix(in oklab, #06363a 12%, transparent) 100%
+    );
+    opacity: 0.85;
+    transition: opacity 0.5s ease;
+  }
+  .card-3d > * { transform: translateZ(0.01px); }
+
+  /* Mobile: cards get a permanent lifted 3D read (no hover available) */
+  @media (max-width: 767px) {
+    .card-3d {
+      transform: perspective(900px) rotateX(4deg) translateZ(0);
+      box-shadow:
+        0 1px 0 0 color-mix(in oklab, #ffffff 70%, transparent) inset,
+        0 -2px 0 0 color-mix(in oklab, #06363a 10%, transparent) inset,
+        0 8px 14px -10px color-mix(in oklab, #06363a 50%, transparent),
+        0 22px 38px -22px color-mix(in oklab, #06363a 45%, transparent);
+    }
+    .card-3d:active {
+      transform: perspective(900px) rotateX(1.5deg) translateY(2px) scale(0.995);
+    }
+  }
+
+  /* Desktop: tilt + lift on hover */
+  @media (min-width: 768px) and (hover: hover) {
+    .card-3d:hover {
+      transform: perspective(1100px) rotateX(6deg) rotateY(-5deg) translateY(-10px) scale(1.015);
+      box-shadow:
+        0 1px 0 0 color-mix(in oklab, #ffffff 70%, transparent) inset,
+        0 -1px 0 0 color-mix(in oklab, #06363a 10%, transparent) inset,
+        0 22px 30px -22px color-mix(in oklab, #06363a 55%, transparent),
+        0 50px 80px -35px color-mix(in oklab, #06363a 50%, transparent);
+    }
+    .card-3d:hover::before { opacity: 1; }
+  }
+
+  /* Isometric plate used inside hero visuals */
+  @keyframes plateFloat {
+    0%, 100% { transform: rotateX(16deg) rotateY(-18deg) translate3d(0, 0, 0); }
+    50% { transform: rotateX(16deg) rotateY(-18deg) translate3d(0, -14px, 30px); }
+  }
+  .plate-3d {
+    transform-style: preserve-3d;
+    animation: plateFloat 7s ease-in-out infinite;
+  }
+  @keyframes plateFloatAlt {
+    0%, 100% { transform: rotateX(16deg) rotateY(-18deg) translate3d(0, 0, 40px); }
+    50% { transform: rotateX(16deg) rotateY(-18deg) translate3d(0, -18px, 74px); }
+  }
+  .plate-3d-alt {
+    transform-style: preserve-3d;
+    animation: plateFloatAlt 7s ease-in-out infinite 0.6s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-3d, .plate-3d, .plate-3d-alt { animation: none; transition: none; }
+  }
+}
+
