@@ -150,6 +150,14 @@
     to { transform: translateX(-50%); }
   }
   .marquee-track { animation: marquee 30s linear infinite; }
+  @keyframes marqueeReverse {
+    from { transform: translateX(-50%); }
+    to { transform: translateX(0); }
+  }
+  .marquee-track-reverse { animation: marqueeReverse 34s linear infinite; }
+  .marquee-mask { mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); }
+  .marquee-pause:hover .marquee-track,
+  .marquee-pause:hover .marquee-track-reverse { animation-play-state: paused; }
   @keyframes slideInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }

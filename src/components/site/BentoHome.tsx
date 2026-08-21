@@ -23,6 +23,9 @@ import { type ComponentType } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { useLiveList } from "@/lib/use-live-list";
 import { TrustBar } from "@/components/site/TrustBar";
+import { LiveActivity, TrustGrabber } from "@/components/site/LiveActivity";
+import { TeamStrip } from "@/components/site/TeamStrip";
+import { PortfolioPreview } from "@/components/site/PortfolioPreview";
 
 const PHONE = "+1 720 794 1888";
 
@@ -402,35 +405,52 @@ function VisionBlock() {
   );
 }
 
-/* ---------- 9. Testimonials (simple cards) ---------- */
+/* ---------- 9. Testimonials (two opposite-scrolling rows) ---------- */
+
+function TestimonialCard({ t }: { t: TestimonialRow }) {
+  return (
+    <div className="flex w-[300px] shrink-0 flex-col rounded-3xl border border-espresso/10 bg-white p-6 shadow-sm sm:w-[360px]">
+      <div className="flex text-copper">
+        {Array.from({ length: t.stars ?? 5 }).map((_, k) => (<Star key={k} className="h-4 w-4 fill-copper" />))}
+      </div>
+      <p className="mt-4 flex-1 text-sm leading-relaxed text-espresso/85">"{t.quote}"</p>
+      <div className="mt-6 flex items-center gap-3 border-t border-espresso/8 pt-4">
+        <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-full bg-espresso text-copper">
+          {t.avatar_url ? <img src={t.avatar_url} alt={t.name} className="h-full w-full object-cover" /> : <span className="text-sm font-bold">{t.name.slice(0, 1)}</span>}
+        </div>
+        <div className="min-w-0">
+          <p className="truncate font-display font-black text-espresso">{t.name}</p>
+          <p className="truncate text-xs text-foreground/60">{t.role_title}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function TestimonialsCards({ items }: { items: TestimonialRow[] }) {
   if (items.length === 0) return null;
+  const mid = Math.ceil(items.length / 2);
+  const rowA = items.slice(0, mid);
+  const rowB = items.slice(mid).length > 0 ? items.slice(mid) : rowA;
+
   return (
-    <Section tone="sand">
-      <SectionHeading eyebrow="Testimonials" title="Loved by teams that ship" />
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {items.slice(0, 6).map((t, i) => (
-          <Reveal key={t.id} delay={i * 60}>
-            <div className="flex h-full flex-col rounded-3xl border border-espresso/10 bg-white p-6 shadow-sm">
-              <div className="flex text-copper">
-                {Array.from({ length: t.stars ?? 5 }).map((_, k) => (<Star key={k} className="h-4 w-4 fill-copper" />))}
-              </div>
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-espresso/85">"{t.quote}"</p>
-              <div className="mt-6 flex items-center gap-3 border-t border-espresso/8 pt-4">
-                <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-full bg-espresso text-copper">
-                  {t.avatar_url ? <img src={t.avatar_url} alt={t.name} className="h-full w-full object-cover" /> : <span className="text-sm font-bold">{t.name.slice(0, 1)}</span>}
-                </div>
-                <div className="min-w-0">
-                  <p className="truncate font-display font-black text-espresso">{t.name}</p>
-                  <p className="truncate text-xs text-foreground/60">{t.role_title}</p>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        ))}
+    <section className="overflow-hidden bg-sand/60 py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeading eyebrow="Testimonials" title="Loved by teams that ship" desc="Real feedback from the businesses we build for." />
       </div>
-    </Section>
+      <div className="marquee-mask marquee-pause space-y-5">
+        <div className="overflow-hidden">
+          <div className="marquee-track flex w-max gap-5">
+            {[...rowA, ...rowA].map((t, i) => <TestimonialCard key={`a-${t.id}-${i}`} t={t} />)}
+          </div>
+        </div>
+        <div className="overflow-hidden">
+          <div className="marquee-track-reverse flex w-max gap-5">
+            {[...rowB, ...rowB].map((t, i) => <TestimonialCard key={`b-${t.id}-${i}`} t={t} />)}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -480,10 +500,14 @@ export function BentoHome() {
       <ServicesBento services={services} />
       <ClientsStrip clients={clients} />
       <WhyBento stats={stats} />
+      <PortfolioPreview />
       <ProcessCards steps={steps} />
+      <LiveActivity />
+      <TeamStrip />
       <OfferBanner />
       <VisionBlock />
       <TestimonialsCards items={testimonials} />
+      <TrustGrabber />
       <FinalCTA />
     </>
   );
