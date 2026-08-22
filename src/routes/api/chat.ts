@@ -40,11 +40,17 @@ export const Route = createFileRoute("/api/chat")({
             }
             messages.push({ role, content });
           }
+          // Server-side only. Never exposed to the browser (no VITE_ prefix).
+          // On Lovable hosting LOVABLE_API_KEY is injected automatically; on
+          // Vercel/self-hosting set CHATBOT_API_KEY in the environment.
           const key =
+            process.env.CHATBOT_API_KEY ||
             process.env.LOVABLE_API_KEY ||
-            process.env.VITE_LOVABLE_API_KEY ||
             process.env.AI_GATEWAY_API_KEY ||
             "";
+          const model = process.env.CHATBOT_MODEL || "google/gemini-3-flash-preview";
+          const baseUrl = process.env.CHATBOT_API_URL || "https://ai.gateway.lovable.dev/v1/chat/completions";
+
           if (!key) {
             return Response.json(
               {
