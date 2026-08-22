@@ -40,11 +40,17 @@ export const Route = createFileRoute("/api/chat")({
             }
             messages.push({ role, content });
           }
+          // Server-side only. Never exposed to the browser (no VITE_ prefix).
+          // On Lovable hosting LOVABLE_API_KEY is injected automatically; on
+          // Vercel/self-hosting set CHATBOT_API_KEY in the environment.
           const key =
+            process.env.CHATBOT_API_KEY ||
             process.env.LOVABLE_API_KEY ||
-            process.env.VITE_LOVABLE_API_KEY ||
             process.env.AI_GATEWAY_API_KEY ||
             "";
+          const model = process.env.CHATBOT_MODEL || "google/gemini-3-flash-preview";
+          const baseUrl = process.env.CHATBOT_API_URL || "https://ai.gateway.lovable.dev/v1/chat/completions";
+
           if (!key) {
             return Response.json(
               {
@@ -56,7 +62,7 @@ export const Route = createFileRoute("/api/chat")({
             );
           }
 
-          const resp = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+          const resp = await fetch(baseUrl, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -64,7 +70,7 @@ export const Route = createFileRoute("/api/chat")({
               "Lovable-API-Key": key,
             },
             body: JSON.stringify({
-              model: "google/gemini-3-flash-preview",
+              model,
               messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
             }),
           });

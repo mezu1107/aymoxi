@@ -44,6 +44,7 @@ import { Route as ClientsSupportRouteImport } from './routes/clients.support'
 import { Route as ClientsTasksRouteImport } from './routes/clients.tasks'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as TeamIndexRouteImport } from './routes/team.index'
 import { Route as TeamSlugRouteImport } from './routes/team.$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as AuthenticatedAdminAboutRouteImport } from './routes/_authenticated/admin.about'
@@ -244,6 +245,11 @@ const ServicesSlugRoute = ServicesSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => ServicesRoute,
 } as any)
+const TeamIndexRoute = TeamIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TeamRoute,
+} as any)
 const TeamSlugRoute = TeamSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -421,6 +427,7 @@ export interface FileRoutesByFullPath {
   '/blog/': typeof BlogIndexRoute
   '/clients/': typeof ClientsIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/team/': typeof TeamIndexRoute
   '/admin/about': typeof AuthenticatedAdminAboutRoute
   '/admin/badges': typeof AuthenticatedAdminBadgesRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRoute
@@ -461,7 +468,6 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/quote': typeof QuoteRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/team': typeof TeamRouteWithChildren
   '/terms': typeof TermsRoute
   '/api/chat': typeof ApiChatRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -479,6 +485,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogIndexRoute
   '/clients': typeof ClientsIndexRoute
   '/services': typeof ServicesIndexRoute
+  '/team': typeof TeamIndexRoute
   '/admin/about': typeof AuthenticatedAdminAboutRoute
   '/admin/badges': typeof AuthenticatedAdminBadgesRoute
   '/admin/blog': typeof AuthenticatedAdminBlogRoute
@@ -542,6 +549,7 @@ export interface FileRoutesById {
   '/blog/': typeof BlogIndexRoute
   '/clients/': typeof ClientsIndexRoute
   '/services/': typeof ServicesIndexRoute
+  '/team/': typeof TeamIndexRoute
   '/_authenticated/admin/about': typeof AuthenticatedAdminAboutRoute
   '/_authenticated/admin/badges': typeof AuthenticatedAdminBadgesRoute
   '/_authenticated/admin/blog': typeof AuthenticatedAdminBlogRoute
@@ -605,6 +613,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/clients/'
     | '/services/'
+    | '/team/'
     | '/admin/about'
     | '/admin/badges'
     | '/admin/blog'
@@ -645,7 +654,6 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/quote'
     | '/sitemap.xml'
-    | '/team'
     | '/terms'
     | '/api/chat'
     | '/blog/$slug'
@@ -663,6 +671,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/clients'
     | '/services'
+    | '/team'
     | '/admin/about'
     | '/admin/badges'
     | '/admin/blog'
@@ -725,6 +734,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/clients/'
     | '/services/'
+    | '/team/'
     | '/_authenticated/admin/about'
     | '/_authenticated/admin/badges'
     | '/_authenticated/admin/blog'
@@ -1023,6 +1033,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSlugRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/team/': {
+      id: '/team/'
+      path: '/'
+      fullPath: '/team/'
+      preLoaderRoute: typeof TeamIndexRouteImport
+      parentRoute: typeof TeamRoute
+    }
     '/team/$slug': {
       id: '/team/$slug'
       path: '/$slug'
@@ -1314,10 +1331,12 @@ const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
 
 interface TeamRouteChildren {
   TeamSlugRoute: typeof TeamSlugRoute
+  TeamIndexRoute: typeof TeamIndexRoute
 }
 
 const TeamRouteChildren: TeamRouteChildren = {
   TeamSlugRoute: TeamSlugRoute,
+  TeamIndexRoute: TeamIndexRoute,
 }
 
 const TeamRouteWithChildren = TeamRoute._addFileChildren(TeamRouteChildren)
