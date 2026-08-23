@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { auditInputSchema, normaliseAuditUrl } from "./audit-helpers";
+import { safeFetch } from "./audit-guard.server";
 
 export type AuditFinding = {
   key: string;
@@ -52,8 +53,7 @@ export const runSiteAudit = createServerFn({ method: "POST" })
     try {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), 12000);
-      const res = await fetch(parsed.toString(), {
-        redirect: "follow",
+      const res = await safeFetch(parsed, {
         signal: controller.signal,
         headers: { "user-agent": "AymoxiSiteAudit/1.0 (+https://www.aymoxi.com)" },
       });

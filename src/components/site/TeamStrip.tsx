@@ -12,8 +12,13 @@ type Member = {
   photo_url: string | null;
 };
 
+const TEAM_PUBLIC_COLUMNS = "id,name,slug,role_title,bio,photo_url,sort_order,published";
+
 export function TeamStrip() {
-  const { rows } = useLiveList<Member>("team_members", { orderBy: { column: "sort_order" } });
+  const { rows } = useLiveList<Member>("team_members", {
+    orderBy: { column: "sort_order" },
+    select: TEAM_PUBLIC_COLUMNS,
+  });
   if (rows.length === 0) return null;
 
   return (

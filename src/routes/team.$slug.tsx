@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SITE_URL } from "@/lib/site";
 import { dbSelectOne } from "@/lib/rest";
-import { Linkedin, Twitter, Mail, Phone, MapPin, BriefcaseBusiness, ArrowLeft, CheckCircle2, Award } from "lucide-react";
+import { Linkedin, Twitter, Mail, MapPin, BriefcaseBusiness, ArrowLeft, CheckCircle2, Award } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 
 type Member = {
@@ -12,8 +12,6 @@ type Member = {
   bio: string | null;
   long_bio: string | null;
   photo_url: string | null;
-  email: string | null;
-  phone: string | null;
   location: string | null;
   experience: string | null;
   expertise: string[] | null;
@@ -26,6 +24,8 @@ export const Route = createFileRoute("/team/$slug")({
   loader: async ({ params }) => {
     const member = await dbSelectOne<Member>("team_members", {
       eq: { slug: params.slug, published: true },
+      select:
+        "id,name,slug,role_title,bio,long_bio,photo_url,location,experience,expertise,achievements,linkedin_url,twitter_url",
     });
     if (!member) throw notFound();
     return { member };
@@ -98,16 +98,9 @@ function MemberPage() {
                 {m.experience && <span className="inline-flex items-center gap-1.5"><BriefcaseBusiness className="h-3.5 w-3.5 text-cocoa" />{m.experience}</span>}
               </div>
               <div className="mt-5 flex flex-wrap justify-center gap-2 sm:justify-start">
-                {m.email && (
-                  <a href={`mailto:${m.email}`} className="inline-flex items-center gap-1.5 rounded-full bg-espresso px-4 py-2 text-xs font-bold text-white hover:bg-cocoa">
-                    <Mail className="h-3.5 w-3.5" /> Email
-                  </a>
-                )}
-                {m.phone && (
-                  <a href={`tel:${m.phone.replace(/\s/g, "")}`} className="inline-flex items-center gap-1.5 rounded-full border border-espresso/15 px-4 py-2 text-xs font-bold text-espresso hover:bg-white">
-                    <Phone className="h-3.5 w-3.5" /> Call
-                  </a>
-                )}
+                <Link to="/contact" className="inline-flex items-center gap-1.5 rounded-full bg-espresso px-4 py-2 text-xs font-bold text-white hover:bg-cocoa">
+                  <Mail className="h-3.5 w-3.5" /> Get in touch
+                </Link>
                 {m.linkedin_url && (
                   <a href={m.linkedin_url} target="_blank" rel="noreferrer" aria-label={`${m.name} on LinkedIn`} className="grid h-9 w-9 place-items-center rounded-full border border-espresso/15 text-espresso hover:bg-white">
                     <Linkedin className="h-4 w-4" />
