@@ -8,9 +8,14 @@ import { dbSelect } from "@/lib/rest";
  */
 export function useLiveList<T extends { id: string }>(
   table: string,
-  opts: { orderBy?: { column: string; ascending?: boolean }; filterPublished?: boolean } = {},
+  opts: {
+    orderBy?: { column: string; ascending?: boolean };
+    filterPublished?: boolean;
+    /** Explicit column list — use it to avoid selecting restricted columns. */
+    select?: string;
+  } = {},
 ) {
-  const { orderBy, filterPublished = true } = opts;
+  const { orderBy, filterPublished = true, select } = opts;
   const [rows, setRows] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
 
