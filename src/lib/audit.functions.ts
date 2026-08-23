@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { auditInputSchema, normaliseAuditUrl } from "./audit-helpers";
+import { safeFetch } from "./audit-guard.server";
 
 export type AuditFinding = {
   key: string;
