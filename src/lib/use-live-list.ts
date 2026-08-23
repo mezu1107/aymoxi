@@ -26,6 +26,7 @@ export function useLiveList<T extends { id: string }>(
       const data = await dbSelect<T>(table, {
         eq: filterPublished ? { published: true } : undefined,
         order: orderBy,
+        select,
       });
       if (!cancelled) {
         setRows(data);
