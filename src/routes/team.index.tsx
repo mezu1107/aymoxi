@@ -1,7 +1,7 @@
 import { SITE_URL } from "@/lib/site";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useApplyPageSeo } from "@/lib/page-seo";
-import { Linkedin, Twitter, Mail } from "lucide-react";
+import { Linkedin, Twitter } from "lucide-react";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Reveal } from "@/components/site/Reveal";
 import { useLiveList } from "@/lib/use-live-list";
@@ -21,12 +21,15 @@ export const Route = createFileRoute("/team/")({
 
 type Member = {
   id: string; name: string; slug: string | null; role_title: string | null; bio: string | null;
-  photo_url: string | null; email: string | null; linkedin_url: string | null; twitter_url: string | null;
+  photo_url: string | null; linkedin_url: string | null; twitter_url: string | null;
 };
 
 function TeamPage() {
   useApplyPageSeo("/team");
-  const { rows, loading } = useLiveList<Member>("team_members", { orderBy: { column: "sort_order" } });
+  const { rows, loading } = useLiveList<Member>("team_members", {
+    orderBy: { column: "sort_order" },
+    select: "id,name,slug,role_title,bio,photo_url,linkedin_url,twitter_url,sort_order,published",
+  });
 
   return (
     <>
@@ -70,9 +73,6 @@ function TeamPage() {
                         )}
                         {m.twitter_url && (
                           <span className="grid h-7 w-7 place-items-center rounded-full border border-espresso/12 text-espresso"><Twitter className="h-3.5 w-3.5" /></span>
-                        )}
-                        {m.email && (
-                          <span className="grid h-7 w-7 place-items-center rounded-full border border-espresso/12 text-espresso"><Mail className="h-3.5 w-3.5" /></span>
                         )}
                       </div>
                     </div>
