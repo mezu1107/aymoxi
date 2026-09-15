@@ -1626,6 +1626,7 @@ export type Database = {
           linkedin_url: string | null
           location: string | null
           long_bio: string | null
+          member_type: string
           name: string
           phone: string | null
           photo_url: string | null
@@ -1647,6 +1648,7 @@ export type Database = {
           linkedin_url?: string | null
           location?: string | null
           long_bio?: string | null
+          member_type?: string
           name: string
           phone?: string | null
           photo_url?: string | null
@@ -1668,6 +1670,7 @@ export type Database = {
           linkedin_url?: string | null
           location?: string | null
           long_bio?: string | null
+          member_type?: string
           name?: string
           phone?: string | null
           photo_url?: string | null
