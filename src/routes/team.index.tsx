@@ -21,15 +21,16 @@ export const Route = createFileRoute("/team/")({
 
 type Member = {
   id: string; name: string; slug: string | null; role_title: string | null; bio: string | null;
-  photo_url: string | null; linkedin_url: string | null; twitter_url: string | null;
+  photo_url: string | null; linkedin_url: string | null; twitter_url: string | null; member_type: string | null;
 };
 
 function TeamPage() {
   useApplyPageSeo("/team");
-  const { rows, loading } = useLiveList<Member>("team_members", {
+  const { rows: all, loading } = useLiveList<Member>("team_members", {
     orderBy: { column: "sort_order" },
-    select: "id,name,slug,role_title,bio,photo_url,linkedin_url,twitter_url,sort_order,published",
+    select: "id,name,slug,role_title,bio,photo_url,linkedin_url,twitter_url,member_type,sort_order,published",
   });
+  const rows = all.filter((m) => m.member_type !== "director");
 
   return (
     <>

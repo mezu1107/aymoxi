@@ -11,6 +11,7 @@ export const Route = createFileRoute("/_authenticated/admin/team")({
         { name: "name", label: "Name", type: "text", required: true },
         { name: "slug", label: "Slug (URL, e.g. shafqat)", type: "text" },
         { name: "role_title", label: "Role", type: "text" },
+        { name: "member_type", label: "Shown on", type: "select", options: ["director", "team"], required: true, help: "Directors appear only on the Directors page, team members only on the Team page." },
         { name: "bio", label: "Short bio", type: "textarea" },
         { name: "long_bio", label: "Full bio", type: "textarea" },
         { name: "photo_url", label: "Photo", type: "image" },
@@ -29,6 +30,7 @@ export const Route = createFileRoute("/_authenticated/admin/team")({
       listColumns={[
         { key: "name", label: "Name" },
         { key: "role_title", label: "Role" },
+        { key: "member_type", label: "Shown on" },
         { key: "sort_order", label: "Order" },
         { key: "published", label: "Live", render: (r) => (r.published ? "✓" : "—") },
       ]}
