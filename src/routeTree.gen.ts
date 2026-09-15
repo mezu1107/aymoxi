@@ -20,6 +20,7 @@ import { Route as CareersRouteImport } from './routes/careers'
 import { Route as ClientsRouteImport } from './routes/clients'
 import { Route as CompanyRouteImport } from './routes/company'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DirectorsRouteImport } from './routes/directors'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PricingRouteImport } from './routes/pricing'
@@ -124,6 +125,11 @@ const CompanyRoute = CompanyRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DirectorsRoute = DirectorsRouteImport.update({
+  id: '/directors',
+  path: '/directors',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -408,6 +414,7 @@ export interface FileRoutesByFullPath {
   '/clients': typeof ClientsRouteWithChildren
   '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
+  '/directors': typeof DirectorsRoute
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
   '/pricing': typeof PricingRoute
@@ -470,6 +477,7 @@ export interface FileRoutesByTo {
   '/careers': typeof CareersRoute
   '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
+  '/directors': typeof DirectorsRoute
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
   '/pricing': typeof PricingRoute
@@ -532,6 +540,7 @@ export interface FileRoutesById {
   '/clients': typeof ClientsRouteWithChildren
   '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
+  '/directors': typeof DirectorsRoute
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
   '/pricing': typeof PricingRoute
@@ -597,6 +606,7 @@ export interface FileRouteTypes {
     | '/clients'
     | '/company'
     | '/contact'
+    | '/directors'
     | '/faq'
     | '/portfolio'
     | '/pricing'
@@ -659,6 +669,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/company'
     | '/contact'
+    | '/directors'
     | '/faq'
     | '/portfolio'
     | '/pricing'
@@ -720,6 +731,7 @@ export interface FileRouteTypes {
     | '/clients'
     | '/company'
     | '/contact'
+    | '/directors'
     | '/faq'
     | '/portfolio'
     | '/pricing'
@@ -785,6 +797,7 @@ export interface RootRouteChildren {
   ClientsRoute: typeof ClientsRouteWithChildren
   CompanyRoute: typeof CompanyRoute
   ContactRoute: typeof ContactRoute
+  DirectorsRoute: typeof DirectorsRoute
   FaqRoute: typeof FaqRoute
   PortfolioRoute: typeof PortfolioRoute
   PricingRoute: typeof PricingRoute
@@ -876,6 +889,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/directors': {
+      id: '/directors'
+      path: '/directors'
+      fullPath: '/directors'
+      preLoaderRoute: typeof DirectorsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -1373,6 +1393,7 @@ const rootRouteChildren: RootRouteChildren = {
   ClientsRoute: ClientsRouteWithChildren,
   CompanyRoute: CompanyRoute,
   ContactRoute: ContactRoute,
+  DirectorsRoute: DirectorsRoute,
   FaqRoute: FaqRoute,
   PortfolioRoute: PortfolioRoute,
   PricingRoute: PricingRoute,
