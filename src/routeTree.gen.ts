@@ -18,6 +18,7 @@ import { Route as BookRouteImport } from './routes/book'
 import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as ClientsRouteImport } from './routes/clients'
+import { Route as CompanyRouteImport } from './routes/company'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
@@ -113,6 +114,11 @@ const CareersRoute = CareersRouteImport.update({
 const ClientsRoute = ClientsRouteImport.update({
   id: '/clients',
   path: '/clients',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompanyRoute = CompanyRouteImport.update({
+  id: '/company',
+  path: '/company',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -400,6 +406,7 @@ export interface FileRoutesByFullPath {
   '/calculator': typeof CalculatorRoute
   '/careers': typeof CareersRoute
   '/clients': typeof ClientsRouteWithChildren
+  '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
@@ -461,6 +468,7 @@ export interface FileRoutesByTo {
   '/book': typeof BookRoute
   '/calculator': typeof CalculatorRoute
   '/careers': typeof CareersRoute
+  '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
@@ -522,6 +530,7 @@ export interface FileRoutesById {
   '/calculator': typeof CalculatorRoute
   '/careers': typeof CareersRoute
   '/clients': typeof ClientsRouteWithChildren
+  '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
@@ -586,6 +595,7 @@ export interface FileRouteTypes {
     | '/calculator'
     | '/careers'
     | '/clients'
+    | '/company'
     | '/contact'
     | '/faq'
     | '/portfolio'
@@ -647,6 +657,7 @@ export interface FileRouteTypes {
     | '/book'
     | '/calculator'
     | '/careers'
+    | '/company'
     | '/contact'
     | '/faq'
     | '/portfolio'
@@ -707,6 +718,7 @@ export interface FileRouteTypes {
     | '/calculator'
     | '/careers'
     | '/clients'
+    | '/company'
     | '/contact'
     | '/faq'
     | '/portfolio'
@@ -771,6 +783,7 @@ export interface RootRouteChildren {
   CalculatorRoute: typeof CalculatorRoute
   CareersRoute: typeof CareersRoute
   ClientsRoute: typeof ClientsRouteWithChildren
+  CompanyRoute: typeof CompanyRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   PortfolioRoute: typeof PortfolioRoute
@@ -849,6 +862,13 @@ declare module '@tanstack/react-router' {
       path: '/clients'
       fullPath: '/clients'
       preLoaderRoute: typeof ClientsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/company': {
+      id: '/company'
+      path: '/company'
+      fullPath: '/company'
+      preLoaderRoute: typeof CompanyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -1351,6 +1371,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalculatorRoute: CalculatorRoute,
   CareersRoute: CareersRoute,
   ClientsRoute: ClientsRouteWithChildren,
+  CompanyRoute: CompanyRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   PortfolioRoute: PortfolioRoute,
