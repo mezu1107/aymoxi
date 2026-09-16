@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import { Bot, Plus, X } from "lucide-react";
+import { Bot, Headset, X } from "lucide-react";
 
 const AIChatbot = lazy(() => import("./AIChatbot").then((m) => ({ default: m.AIChatbot })));
 
@@ -67,7 +67,7 @@ export function FloatingActions() {
           onClick={() => setExpanded((v) => !v)}
           className="pulse-ring grid h-14 w-14 place-items-center rounded-full bg-espresso text-copper shadow-luxury transition hover:scale-105 active:scale-95"
         >
-          {expanded ? <X className="h-6 w-6" /> : <Plus className="h-6 w-6" />}
+          {expanded ? <X className="h-6 w-6" /> : <Headset className="h-6 w-6" />}
         </button>
       </div>
 
