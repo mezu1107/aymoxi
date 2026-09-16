@@ -122,6 +122,57 @@ export type Database = {
         }
         Relationships: []
       }
+      before_after: {
+        Row: {
+          after_url: string | null
+          before_url: string | null
+          category: string | null
+          client: string | null
+          created_at: string
+          id: string
+          link_url: string | null
+          metric_label: string | null
+          metric_value: string | null
+          published: boolean
+          sort_order: number
+          summary: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          after_url?: string | null
+          before_url?: string | null
+          category?: string | null
+          client?: string | null
+          created_at?: string
+          id?: string
+          link_url?: string | null
+          metric_label?: string | null
+          metric_value?: string | null
+          published?: boolean
+          sort_order?: number
+          summary?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          after_url?: string | null
+          before_url?: string | null
+          category?: string | null
+          client?: string | null
+          created_at?: string
+          id?: string
+          link_url?: string | null
+          metric_label?: string | null
+          metric_value?: string | null
+          published?: boolean
+          sort_order?: number
+          summary?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       blog_posts: {
         Row: {
           author: string | null
@@ -718,6 +769,84 @@ export type Database = {
           published?: boolean
           question?: string
           sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      founder_notes: {
+        Row: {
+          body: string
+          created_at: string
+          heading: string
+          id: string
+          name: string
+          photo_url: string | null
+          published: boolean
+          role_title: string | null
+          signature_name: string | null
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          heading?: string
+          id?: string
+          name: string
+          photo_url?: string | null
+          published?: boolean
+          role_title?: string | null
+          signature_name?: string | null
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          heading?: string
+          id?: string
+          name?: string
+          photo_url?: string | null
+          published?: boolean
+          role_title?: string | null
+          signature_name?: string | null
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      guarantees: {
+        Row: {
+          created_at: string
+          description: string | null
+          detail: string | null
+          icon: string
+          id: string
+          published: boolean
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          detail?: string | null
+          icon?: string
+          id?: string
+          published?: boolean
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          detail?: string | null
+          icon?: string
+          id?: string
+          published?: boolean
+          sort_order?: number
+          title?: string
           updated_at?: string
         }
         Relationships: []
@@ -1411,6 +1540,54 @@ export type Database = {
         }
         Relationships: []
       }
+      review_wall: {
+        Row: {
+          company: string | null
+          created_at: string
+          id: string
+          media_type: string
+          name: string
+          photo_url: string | null
+          published: boolean
+          quote: string
+          rating: number
+          role_title: string | null
+          sort_order: number
+          updated_at: string
+          video_url: string | null
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          id?: string
+          media_type?: string
+          name: string
+          photo_url?: string | null
+          published?: boolean
+          quote: string
+          rating?: number
+          role_title?: string | null
+          sort_order?: number
+          updated_at?: string
+          video_url?: string | null
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          id?: string
+          media_type?: string
+          name?: string
+          photo_url?: string | null
+          published?: boolean
+          quote?: string
+          rating?: number
+          role_title?: string | null
+          sort_order?: number
+          updated_at?: string
+          video_url?: string | null
+        }
+        Relationships: []
+      }
       services: {
         Row: {
           banner_image: string | null
@@ -1617,6 +1794,7 @@ export type Database = {
       team_members: {
         Row: {
           achievements: string[]
+          availability: string
           bio: string
           created_at: string
           email: string | null
@@ -1631,14 +1809,17 @@ export type Database = {
           phone: string | null
           photo_url: string | null
           published: boolean
+          response_time: string | null
           role_title: string
           slug: string | null
           sort_order: number
           twitter_url: string | null
           updated_at: string
+          work_hours: string | null
         }
         Insert: {
           achievements?: string[]
+          availability?: string
           bio?: string
           created_at?: string
           email?: string | null
@@ -1653,14 +1834,17 @@ export type Database = {
           phone?: string | null
           photo_url?: string | null
           published?: boolean
+          response_time?: string | null
           role_title?: string
           slug?: string | null
           sort_order?: number
           twitter_url?: string | null
           updated_at?: string
+          work_hours?: string | null
         }
         Update: {
           achievements?: string[]
+          availability?: string
           bio?: string
           created_at?: string
           email?: string | null
@@ -1675,11 +1859,13 @@ export type Database = {
           phone?: string | null
           photo_url?: string | null
           published?: boolean
+          response_time?: string | null
           role_title?: string
           slug?: string | null
           sort_order?: number
           twitter_url?: string | null
           updated_at?: string
+          work_hours?: string | null
         }
         Relationships: []
       }

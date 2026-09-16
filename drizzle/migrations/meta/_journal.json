@@ -8,6 +8,13 @@
       "when": 1789484833476,
       "tag": "0000_team_member_type_and_about_blocks",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789557322650,
+      "tag": "0001_trust_and_fresh_sections",
+      "breakpoints": true
     }
   ]
 }
