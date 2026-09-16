@@ -10,9 +10,12 @@ export const Route = createFileRoute("/team/")({
   head: () => ({
     meta: [
       { title: "Leadership — AYMOXI" },
-      { name: "description", content: "Meet the founders leading AYMOXI — Shafqat Rasool and Noman." },
-      { property: "og:title", content: "Leadership — AYMOXI" },
+      { name: "description", content: "Meet the AYMOXI team members responsible for design, engineering and client delivery." },
+      { property: "og:title", content: "Team — AYMOXI" },
+      { property: "og:description", content: "Meet the AYMOXI team members responsible for design, engineering and client delivery." },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: SITE_URL + "/team" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: SITE_URL + "/team" }],
   }),
@@ -30,7 +33,7 @@ function TeamPage() {
     orderBy: { column: "sort_order" },
     select: "id,name,slug,role_title,bio,photo_url,linkedin_url,twitter_url,member_type,sort_order,published",
   });
-  const rows = all.filter((m) => m.member_type !== "director");
+  const rows = all.filter((m) => m.member_type === "team");
 
   return (
     <>

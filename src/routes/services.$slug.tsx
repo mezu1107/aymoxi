@@ -244,8 +244,8 @@ function ServiceDetail() {
         <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-6 lg:grid-cols-[1.6fr_1fr] lg:px-8">
           <Reveal>
             <div>
-              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-cocoa">Overview</span>
-              <h2 className="mt-2 font-display text-3xl font-black text-espresso sm:text-4xl">What you get</h2>
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-cocoa">Service details</span>
+              <h2 className="mt-2 font-display text-3xl font-black text-espresso sm:text-4xl">Overview</h2>
               <div className="prose prose-espresso mt-5 max-w-none text-base leading-relaxed text-foreground/75">
                 {(service.long_description ?? service.description).replace(/\\n/g, "\n").split(/\n{2,}/).map((p, i) => (
                   <p key={i} className="mb-4">{p}</p>
