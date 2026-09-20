@@ -57,6 +57,8 @@ import { Route as AuthenticatedAdminCasesRouteImport } from './routes/_authentic
 import { Route as AuthenticatedAdminClientsRouteImport } from './routes/_authenticated/admin.clients'
 import { Route as AuthenticatedAdminCrmRouteImport } from './routes/_authenticated/admin.crm'
 import { Route as AuthenticatedAdminFaqsRouteImport } from './routes/_authenticated/admin.faqs'
+import { Route as AuthenticatedAdminFounderRouteImport } from './routes/_authenticated/admin.founder'
+import { Route as AuthenticatedAdminGuaranteesRouteImport } from './routes/_authenticated/admin.guarantees'
 import { Route as AuthenticatedAdminInvoicesRouteImport } from './routes/_authenticated/admin.invoices'
 import { Route as AuthenticatedAdminMessagesRouteImport } from './routes/_authenticated/admin.messages'
 import { Route as AuthenticatedAdminNewsletterRouteImport } from './routes/_authenticated/admin.newsletter'
@@ -67,6 +69,8 @@ import { Route as AuthenticatedAdminPricingRouteImport } from './routes/_authent
 import { Route as AuthenticatedAdminProcessRouteImport } from './routes/_authenticated/admin.process'
 import { Route as AuthenticatedAdminProposalsRouteImport } from './routes/_authenticated/admin.proposals'
 import { Route as AuthenticatedAdminQuotesRouteImport } from './routes/_authenticated/admin.quotes'
+import { Route as AuthenticatedAdminResultsRouteImport } from './routes/_authenticated/admin.results'
+import { Route as AuthenticatedAdminReviewsRouteImport } from './routes/_authenticated/admin.reviews'
 import { Route as AuthenticatedAdminSeoRouteImport } from './routes/_authenticated/admin.seo'
 import { Route as AuthenticatedAdminServicesRouteImport } from './routes/_authenticated/admin.services'
 import { Route as AuthenticatedAdminStatsRouteImport } from './routes/_authenticated/admin.stats'
@@ -315,6 +319,18 @@ const AuthenticatedAdminFaqsRoute = AuthenticatedAdminFaqsRouteImport.update({
   path: '/faqs',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminFounderRoute =
+  AuthenticatedAdminFounderRouteImport.update({
+    id: '/founder',
+    path: '/founder',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminGuaranteesRoute =
+  AuthenticatedAdminGuaranteesRouteImport.update({
+    id: '/guarantees',
+    path: '/guarantees',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminInvoicesRoute =
   AuthenticatedAdminInvoicesRouteImport.update({
     id: '/invoices',
@@ -373,6 +389,18 @@ const AuthenticatedAdminQuotesRoute =
   AuthenticatedAdminQuotesRouteImport.update({
     id: '/quotes',
     path: '/quotes',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminResultsRoute =
+  AuthenticatedAdminResultsRouteImport.update({
+    id: '/results',
+    path: '/results',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminReviewsRoute =
+  AuthenticatedAdminReviewsRouteImport.update({
+    id: '/reviews',
+    path: '/reviews',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
 const AuthenticatedAdminSeoRoute = AuthenticatedAdminSeoRouteImport.update({
@@ -450,6 +478,8 @@ export interface FileRoutesByFullPath {
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/crm': typeof AuthenticatedAdminCrmRoute
   '/admin/faqs': typeof AuthenticatedAdminFaqsRoute
+  '/admin/founder': typeof AuthenticatedAdminFounderRoute
+  '/admin/guarantees': typeof AuthenticatedAdminGuaranteesRoute
   '/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/admin/messages': typeof AuthenticatedAdminMessagesRoute
   '/admin/newsletter': typeof AuthenticatedAdminNewsletterRoute
@@ -460,6 +490,8 @@ export interface FileRoutesByFullPath {
   '/admin/process': typeof AuthenticatedAdminProcessRoute
   '/admin/proposals': typeof AuthenticatedAdminProposalsRoute
   '/admin/quotes': typeof AuthenticatedAdminQuotesRoute
+  '/admin/results': typeof AuthenticatedAdminResultsRoute
+  '/admin/reviews': typeof AuthenticatedAdminReviewsRoute
   '/admin/seo': typeof AuthenticatedAdminSeoRoute
   '/admin/services': typeof AuthenticatedAdminServicesRoute
   '/admin/stats': typeof AuthenticatedAdminStatsRoute
@@ -510,6 +542,8 @@ export interface FileRoutesByTo {
   '/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/admin/crm': typeof AuthenticatedAdminCrmRoute
   '/admin/faqs': typeof AuthenticatedAdminFaqsRoute
+  '/admin/founder': typeof AuthenticatedAdminFounderRoute
+  '/admin/guarantees': typeof AuthenticatedAdminGuaranteesRoute
   '/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/admin/messages': typeof AuthenticatedAdminMessagesRoute
   '/admin/newsletter': typeof AuthenticatedAdminNewsletterRoute
@@ -520,6 +554,8 @@ export interface FileRoutesByTo {
   '/admin/process': typeof AuthenticatedAdminProcessRoute
   '/admin/proposals': typeof AuthenticatedAdminProposalsRoute
   '/admin/quotes': typeof AuthenticatedAdminQuotesRoute
+  '/admin/results': typeof AuthenticatedAdminResultsRoute
+  '/admin/reviews': typeof AuthenticatedAdminReviewsRoute
   '/admin/seo': typeof AuthenticatedAdminSeoRoute
   '/admin/services': typeof AuthenticatedAdminServicesRoute
   '/admin/stats': typeof AuthenticatedAdminStatsRoute
@@ -576,6 +612,8 @@ export interface FileRoutesById {
   '/_authenticated/admin/clients': typeof AuthenticatedAdminClientsRoute
   '/_authenticated/admin/crm': typeof AuthenticatedAdminCrmRoute
   '/_authenticated/admin/faqs': typeof AuthenticatedAdminFaqsRoute
+  '/_authenticated/admin/founder': typeof AuthenticatedAdminFounderRoute
+  '/_authenticated/admin/guarantees': typeof AuthenticatedAdminGuaranteesRoute
   '/_authenticated/admin/invoices': typeof AuthenticatedAdminInvoicesRoute
   '/_authenticated/admin/messages': typeof AuthenticatedAdminMessagesRoute
   '/_authenticated/admin/newsletter': typeof AuthenticatedAdminNewsletterRoute
@@ -586,6 +624,8 @@ export interface FileRoutesById {
   '/_authenticated/admin/process': typeof AuthenticatedAdminProcessRoute
   '/_authenticated/admin/proposals': typeof AuthenticatedAdminProposalsRoute
   '/_authenticated/admin/quotes': typeof AuthenticatedAdminQuotesRoute
+  '/_authenticated/admin/results': typeof AuthenticatedAdminResultsRoute
+  '/_authenticated/admin/reviews': typeof AuthenticatedAdminReviewsRoute
   '/_authenticated/admin/seo': typeof AuthenticatedAdminSeoRoute
   '/_authenticated/admin/services': typeof AuthenticatedAdminServicesRoute
   '/_authenticated/admin/stats': typeof AuthenticatedAdminStatsRoute
@@ -642,6 +682,8 @@ export interface FileRouteTypes {
     | '/admin/clients'
     | '/admin/crm'
     | '/admin/faqs'
+    | '/admin/founder'
+    | '/admin/guarantees'
     | '/admin/invoices'
     | '/admin/messages'
     | '/admin/newsletter'
@@ -652,6 +694,8 @@ export interface FileRouteTypes {
     | '/admin/process'
     | '/admin/proposals'
     | '/admin/quotes'
+    | '/admin/results'
+    | '/admin/reviews'
     | '/admin/seo'
     | '/admin/services'
     | '/admin/stats'
@@ -702,6 +746,8 @@ export interface FileRouteTypes {
     | '/admin/clients'
     | '/admin/crm'
     | '/admin/faqs'
+    | '/admin/founder'
+    | '/admin/guarantees'
     | '/admin/invoices'
     | '/admin/messages'
     | '/admin/newsletter'
@@ -712,6 +758,8 @@ export interface FileRouteTypes {
     | '/admin/process'
     | '/admin/proposals'
     | '/admin/quotes'
+    | '/admin/results'
+    | '/admin/reviews'
     | '/admin/seo'
     | '/admin/services'
     | '/admin/stats'
@@ -767,6 +815,8 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/clients'
     | '/_authenticated/admin/crm'
     | '/_authenticated/admin/faqs'
+    | '/_authenticated/admin/founder'
+    | '/_authenticated/admin/guarantees'
     | '/_authenticated/admin/invoices'
     | '/_authenticated/admin/messages'
     | '/_authenticated/admin/newsletter'
@@ -777,6 +827,8 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/process'
     | '/_authenticated/admin/proposals'
     | '/_authenticated/admin/quotes'
+    | '/_authenticated/admin/results'
+    | '/_authenticated/admin/reviews'
     | '/_authenticated/admin/seo'
     | '/_authenticated/admin/services'
     | '/_authenticated/admin/stats'
@@ -1150,6 +1202,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminFaqsRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/founder': {
+      id: '/_authenticated/admin/founder'
+      path: '/founder'
+      fullPath: '/admin/founder'
+      preLoaderRoute: typeof AuthenticatedAdminFounderRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/guarantees': {
+      id: '/_authenticated/admin/guarantees'
+      path: '/guarantees'
+      fullPath: '/admin/guarantees'
+      preLoaderRoute: typeof AuthenticatedAdminGuaranteesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/invoices': {
       id: '/_authenticated/admin/invoices'
       path: '/invoices'
@@ -1220,6 +1286,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminQuotesRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/results': {
+      id: '/_authenticated/admin/results'
+      path: '/results'
+      fullPath: '/admin/results'
+      preLoaderRoute: typeof AuthenticatedAdminResultsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/reviews': {
+      id: '/_authenticated/admin/reviews'
+      path: '/reviews'
+      fullPath: '/admin/reviews'
+      preLoaderRoute: typeof AuthenticatedAdminReviewsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/seo': {
       id: '/_authenticated/admin/seo'
       path: '/seo'
@@ -1267,6 +1347,8 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminClientsRoute: typeof AuthenticatedAdminClientsRoute
   AuthenticatedAdminCrmRoute: typeof AuthenticatedAdminCrmRoute
   AuthenticatedAdminFaqsRoute: typeof AuthenticatedAdminFaqsRoute
+  AuthenticatedAdminFounderRoute: typeof AuthenticatedAdminFounderRoute
+  AuthenticatedAdminGuaranteesRoute: typeof AuthenticatedAdminGuaranteesRoute
   AuthenticatedAdminInvoicesRoute: typeof AuthenticatedAdminInvoicesRoute
   AuthenticatedAdminMessagesRoute: typeof AuthenticatedAdminMessagesRoute
   AuthenticatedAdminNewsletterRoute: typeof AuthenticatedAdminNewsletterRoute
@@ -1277,6 +1359,8 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminProcessRoute: typeof AuthenticatedAdminProcessRoute
   AuthenticatedAdminProposalsRoute: typeof AuthenticatedAdminProposalsRoute
   AuthenticatedAdminQuotesRoute: typeof AuthenticatedAdminQuotesRoute
+  AuthenticatedAdminResultsRoute: typeof AuthenticatedAdminResultsRoute
+  AuthenticatedAdminReviewsRoute: typeof AuthenticatedAdminReviewsRoute
   AuthenticatedAdminSeoRoute: typeof AuthenticatedAdminSeoRoute
   AuthenticatedAdminServicesRoute: typeof AuthenticatedAdminServicesRoute
   AuthenticatedAdminStatsRoute: typeof AuthenticatedAdminStatsRoute
@@ -1294,6 +1378,8 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminClientsRoute: AuthenticatedAdminClientsRoute,
   AuthenticatedAdminCrmRoute: AuthenticatedAdminCrmRoute,
   AuthenticatedAdminFaqsRoute: AuthenticatedAdminFaqsRoute,
+  AuthenticatedAdminFounderRoute: AuthenticatedAdminFounderRoute,
+  AuthenticatedAdminGuaranteesRoute: AuthenticatedAdminGuaranteesRoute,
   AuthenticatedAdminInvoicesRoute: AuthenticatedAdminInvoicesRoute,
   AuthenticatedAdminMessagesRoute: AuthenticatedAdminMessagesRoute,
   AuthenticatedAdminNewsletterRoute: AuthenticatedAdminNewsletterRoute,
@@ -1304,6 +1390,8 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminProcessRoute: AuthenticatedAdminProcessRoute,
   AuthenticatedAdminProposalsRoute: AuthenticatedAdminProposalsRoute,
   AuthenticatedAdminQuotesRoute: AuthenticatedAdminQuotesRoute,
+  AuthenticatedAdminResultsRoute: AuthenticatedAdminResultsRoute,
+  AuthenticatedAdminReviewsRoute: AuthenticatedAdminReviewsRoute,
   AuthenticatedAdminSeoRoute: AuthenticatedAdminSeoRoute,
   AuthenticatedAdminServicesRoute: AuthenticatedAdminServicesRoute,
   AuthenticatedAdminStatsRoute: AuthenticatedAdminStatsRoute,
