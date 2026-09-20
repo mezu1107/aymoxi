@@ -23,6 +23,10 @@ const nav: { to: string; label: string; icon: typeof LayoutDashboard; exact?: bo
   { to: "/admin/testimonials", label: "Testimonials", icon: Star },
   { to: "/admin/team", label: "Team", icon: Users },
   { to: "/admin/badges", label: "Trust Badges", icon: ShieldCheck },
+  { to: "/admin/reviews", label: "Review Wall", icon: Star },
+  { to: "/admin/results", label: "Before & After", icon: BarChart3 },
+  { to: "/admin/guarantees", label: "Our Promises", icon: ShieldCheck },
+  { to: "/admin/founder", label: "Founder Note", icon: BookOpen },
 
   { to: "/admin/clients", label: "Clients & Logos", icon: Building2 },
   { to: "/admin/process", label: "Process Steps", icon: GitBranch },

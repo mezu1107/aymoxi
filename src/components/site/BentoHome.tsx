@@ -26,6 +26,10 @@ import { TrustBar } from "@/components/site/TrustBar";
 import { LiveActivity, TrustGrabber } from "@/components/site/LiveActivity";
 import { TeamStrip } from "@/components/site/TeamStrip";
 import { PortfolioPreview } from "@/components/site/PortfolioPreview";
+import { FounderNote } from "@/components/site/FounderNote";
+import { Guarantees } from "@/components/site/Guarantees";
+import { ReviewWall } from "@/components/site/ReviewWall";
+import { BeforeAfterSection } from "@/components/site/BeforeAfter";
 
 const PHONE = "+1 720 794 1888";
 
@@ -501,12 +505,16 @@ export function BentoHome() {
       <ClientsStrip clients={clients} />
       <WhyBento stats={stats} />
       <PortfolioPreview />
+      <BeforeAfterSection />
       <ProcessCards steps={steps} />
+      <Guarantees />
       <LiveActivity />
       <TeamStrip />
+      <FounderNote />
       <OfferBanner />
       <VisionBlock />
       <TestimonialsCards items={testimonials} />
+      <ReviewWall />
       <TrustGrabber />
       <FinalCTA />
     </>
